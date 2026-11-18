@@ -21,8 +21,8 @@ export function LoginForm() {
             <h1 className="text-lg font-semibold">{fr.login.title}</h1>
             <p className="mt-1 text-sm text-muted-foreground">{fr.login.intro}</p>
           </div>
-          <Input id="login-email" name="email" type="email" autoComplete="email" placeholder={fr.login.emailPlaceholder} aria-label={fr.login.email} defaultValue={state.email} autoFocus required />
-          <Input id="login-code" name="code" type="password" autoComplete="current-password" placeholder={fr.login.code} aria-label={fr.login.code} required />
+          <Input id="login-email" name="email" type="email" autoComplete="email" placeholder={fr.login.emailPlaceholder} aria-label={fr.login.email} defaultValue={state.email} autoFocus required className="border-transparent bg-muted dark:bg-muted" />
+          <Input id="login-code" name="code" type="password" autoComplete="current-password" placeholder={fr.login.code} aria-label={fr.login.code} required className="border-transparent bg-muted dark:bg-muted" />
           {state.error && <p role="alert" className="text-sm text-destructive">{state.error}</p>}
           <Button id="login-submit" type="submit" disabled={pending} className="w-full">
             {fr.login.verify}

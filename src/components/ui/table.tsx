@@ -7,7 +7,7 @@ function Table({ className, ...props }: React.ComponentProps<"table">) {
   return (
     <div
       data-slot="table-container"
-      className="relative w-full overflow-x-auto"
+      className="relative w-full"
     >
       <table
         data-slot="table"
@@ -22,7 +22,7 @@ function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
   return (
     <thead
       data-slot="table-header"
-      className={cn("bg-muted/50 [&_tr]:border-b", className)}
+      className={cn("[&_tr]:border-0", className)}
       {...props}
     />
   )
@@ -69,7 +69,7 @@ function TableHead({ className, ...props }: React.ComponentProps<"th">) {
     <th
       data-slot="table-head"
       className={cn(
-        "h-10 px-2 text-left align-middle text-xs font-medium whitespace-nowrap text-muted-foreground [&:has([role=checkbox])]:pr-0",
+        "sticky top-[var(--table-head-top,3rem)] z-10 h-8 bg-background px-2 text-left align-middle text-xs font-medium whitespace-nowrap text-muted-foreground before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:bg-[color-mix(in_oklch,var(--background),var(--muted)_50%)] first:before:rounded-tl-xl last:before:rounded-tr-xl [&:has([role=checkbox])]:pr-0",
         className
       )}
       {...props}

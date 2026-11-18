@@ -17,12 +17,12 @@ const m = new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 2 });
 /** Amounts are in K€; from 1 000 K€ show M€. */
 const compact = (v: number) => (Math.abs(v) >= 1000 ? `${m.format(v / 1000)} M€` : `${kfmt(v)} K€`);
 
-function Stat({ id, label, value }: { id: string; label: string; value: string }) {
+function Stat({ id, label, value, className }: { id: string; label: string; value: string; className?: string }) {
   return (
     <Card size="sm" id={id}>
       <CardContent>
         <p className="text-sm text-muted-foreground">{label}</p>
-        <p className="mt-1 text-2xl font-semibold tabular-nums">{value}</p>
+        <p className={cn("mt-1 text-2xl font-semibold tabular-nums", className)}>{value}</p>
       </CardContent>
     </Card>
   );
@@ -38,8 +38,8 @@ async function BudgetPageContent() {
 
       <div className="mt-6 grid gap-3 sm:grid-cols-3">
         <Stat id="budget-stat-forecast" label={fr.budget.totalForecast} value={compact(b.forecast)} />
-        <Stat id="budget-stat-spent" label={fr.budget.totalSpent} value={compact(b.spent)} />
-        <Stat id="budget-stat-remaining" label={fr.budget.totalRemaining} value={compact(b.remaining)} />
+        <Stat id="budget-stat-spent" label={fr.budget.totalSpent} value={compact(b.spent)} className="text-destructive" />
+        <Stat id="budget-stat-remaining" label={fr.budget.totalRemaining} value={compact(b.remaining)} className="text-success-foreground" />
       </div>
       {gap !== null && Math.abs(gap) > 0.05 && (
         <p className="mt-2 text-xs text-muted-foreground">
@@ -47,7 +47,7 @@ async function BudgetPageContent() {
         </p>
       )}
 
-      <div className="mt-6 overflow-x-auto rounded-xl ring-1 ring-foreground/10">
+      <div className="mt-6">
         <Table id="budget-table">
           <TableHeader>
             <TableRow>
@@ -58,7 +58,7 @@ async function BudgetPageContent() {
               <TableHead className="w-32 text-right">{fr.budget.consumed}</TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody>
+          <TableBody className="[&_tr:nth-last-child(2)]:border-b-0">
             {b.rows.flatMap((r) => {
               const over = (r.forecast ?? 0) > 0 && r.remaining !== null && r.remaining < 0;
               const pct = r.forecast && r.spent !== null ? Math.round((r.spent / r.forecast) * 100) : null;
@@ -79,7 +79,7 @@ async function BudgetPageContent() {
                       </div>
                     )}
                   </TableCell>
-                  <TableCell className={cn("text-right tabular-nums", over && "text-destructive")}>{kfmt(r.remaining)}</TableCell>
+                  <TableCell className={cn("text-right tabular-nums", over && "text-destructive", (r.remaining ?? 0) > 0 && "text-success-foreground")}>{kfmt(r.remaining)}</TableCell>
                   <TableCell className="text-right">
                     {over ? (
                       <Badge variant="destructive"><CircleAlert />{fr.budget.over}</Badge>
@@ -107,11 +107,11 @@ async function BudgetPageContent() {
               ));
               return [main, ...subs];
             })}
-            <TableRow className="bg-muted/50 font-semibold hover:bg-muted/50">
+            <TableRow className="font-semibold hover:bg-transparent [&>td]:bg-[color-mix(in_oklch,var(--background),var(--muted)_50%)] [&>td:first-child]:rounded-bl-xl [&>td:last-child]:rounded-br-xl">
               <TableCell>{fr.budget.total}</TableCell>
               <TableCell className="text-right tabular-nums">{compact(b.forecast)}</TableCell>
-              <TableCell className="text-right tabular-nums">{compact(b.spent)}</TableCell>
-              <TableCell className="text-right tabular-nums">{compact(b.remaining)}</TableCell>
+              <TableCell className="text-right tabular-nums text-destructive">{compact(b.spent)}</TableCell>
+              <TableCell className={cn("text-right tabular-nums", b.remaining > 0 && "text-success-foreground")}>{compact(b.remaining)}</TableCell>
               <TableCell />
             </TableRow>
           </TableBody>

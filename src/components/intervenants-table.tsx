@@ -23,12 +23,12 @@ export function IntervenantsTable({ items, editable, id }: { items: Intervenant[
   const shown = items.filter((i) => norm(i.name).includes(norm(q)));
 
   return (
-    <div className="space-y-3">
-      <div className="relative max-w-xs">
+    <div>
+      <div className="sticky top-12 z-20 -mx-4 bg-background px-4 py-2 sm:-mx-6 sm:px-6 lg:-mx-10 lg:px-10"><div className="relative max-w-xs">
         <Search className="pointer-events-none absolute left-2.5 top-2 size-4 text-muted-foreground" />
         <Input id={`${id}-search`} aria-label={fr.common.search} placeholder={fr.common.search} value={q} onChange={(e) => setQ(e.target.value)} className="pl-8" />
-      </div>
-      <div className="overflow-x-auto rounded-xl ring-1 ring-foreground/10">
+      </div></div>
+      <div className="[--table-head-top:6rem]">
         <Table id={`${id}-table`}>
           <TableHeader>
             <TableRow>
