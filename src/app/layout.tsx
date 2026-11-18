@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { AppHeader } from "@/components/app-header";
 import { Toaster } from "@/components/ui/sonner";
 import { THEME_INIT_SCRIPT } from "@/lib/theme";
 import { fr } from "@/messages/fr";
@@ -19,6 +20,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
       </head>
       <body className="min-h-full flex flex-col">
+        <AppHeader />
         {children}
         <Toaster />
       </body>
