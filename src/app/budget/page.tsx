@@ -30,7 +30,6 @@ function Stat({ id, label, value, className }: { id: string; label: string; valu
 
 async function BudgetPageContent() {
   const b = buildBudget(await getBudgetLines());
-  const gap = b.target === null ? null : b.forecast - b.target;
 
   return (
     <main className="page-width w-full flex-1 px-4 py-6 sm:px-6 lg:px-10">
@@ -41,11 +40,6 @@ async function BudgetPageContent() {
         <Stat id="budget-stat-spent" label={fr.budget.totalSpent} value={compact(b.spent)} className="text-destructive" />
         <Stat id="budget-stat-remaining" label={fr.budget.totalRemaining} value={compact(b.remaining)} className="text-success-foreground" />
       </div>
-      {gap !== null && Math.abs(gap) > 0.05 && (
-        <p className="mt-2 text-xs text-muted-foreground">
-          {fr.budget.target} : {compact(b.target!)}. {fr.budget.gapTarget(compact(gap))}
-        </p>
-      )}
 
       <div className="mt-6">
         <Table id="budget-table">

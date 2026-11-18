@@ -61,7 +61,6 @@ export const fr = {
     add: {
       button: "Ajouter un intervenant",
       title: "Nouvel intervenant prestataire",
-      description: "Il apparaîtra en bas de la liste des prestataires.",
       name: "Nom",
       namePlaceholder: "NOM Prénom",
       rate: "Taux (€/h)",

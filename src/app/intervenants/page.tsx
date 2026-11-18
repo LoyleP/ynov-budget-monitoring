@@ -46,7 +46,6 @@ async function IntervenantsPageContent() {
           <IntervenantsTable id="prestataires" items={pres} editable />
         </TabsContent>
         <TabsContent value="contractuels" className="mt-4">
-          <p className="mb-3 text-sm text-muted-foreground">{fr.intervenants.contractuelsPending}</p>
           <IntervenantsTable id="contractuels" items={con} editable={false} />
         </TabsContent>
         <TabsContent value="scenario" className="mt-4">

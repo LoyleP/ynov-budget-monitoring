@@ -5,7 +5,7 @@ import { Plus } from "lucide-react";
 import { toast } from "sonner";
 import { addIntervenant } from "@/app/actions";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { fr } from "@/messages/fr";
 
@@ -37,11 +37,10 @@ export function AddIntervenantDialog() {
       <DialogTrigger asChild>
         <Button id="intervenants-add-open" size="sm"><Plus />{t.button}</Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent aria-describedby={undefined}>
         <form action={submit} id="intervenants-add-form" className="space-y-4">
           <DialogHeader>
             <DialogTitle>{t.title}</DialogTitle>
-            <DialogDescription>{t.description}</DialogDescription>
           </DialogHeader>
           <div className="space-y-3">
             <label className="block space-y-1 text-sm">
