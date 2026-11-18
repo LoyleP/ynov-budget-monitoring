@@ -27,3 +27,12 @@ export async function updateIntervenant(id: number, field: "rate" | "hours", val
   else await sql`update intervenants set hours = ${value} where id = ${id}`;
   revalidatePath("/intervenants");
 }
+
+export async function addIntervenant(name: string, rate: number | null, hours: number | null) {
+  await requireSession();
+  const clean = name.trim();
+  if (!clean) throw new Error("Nom obligatoire");
+  await sql`insert into intervenants (category, name, rate, hours, position)
+    values ('prestataire', ${clean}, ${rate}, ${hours}, (select coalesce(max(position), 0) + 1 from intervenants))`;
+  revalidatePath("/intervenants");
+}

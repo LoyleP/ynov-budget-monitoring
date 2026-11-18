@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { CircleAlert, Search } from "lucide-react";
 import { updateIntervenant } from "@/app/actions";
+import { AddIntervenantDialog } from "@/components/add-intervenant-dialog";
 import { EditableNumber } from "@/components/editable-number";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -24,10 +25,10 @@ export function IntervenantsTable({ items, editable, id }: { items: Intervenant[
 
   return (
     <div>
-      <div className="sticky top-12 z-20 -mx-4 bg-background px-4 py-2 sm:-mx-6 sm:px-6 lg:-mx-10 lg:px-10"><div className="relative max-w-xs">
+      <div className="sticky top-12 z-20 -mx-4 flex items-center justify-between gap-3 bg-background px-4 py-2 sm:-mx-6 sm:px-6 lg:-mx-10 lg:px-10"><div className="relative w-full max-w-xs">
         <Search className="pointer-events-none absolute left-2.5 top-2 size-4 text-muted-foreground" />
         <Input id={`${id}-search`} aria-label={fr.common.search} placeholder={fr.common.search} value={q} onChange={(e) => setQ(e.target.value)} className="pl-8" />
-      </div></div>
+      </div>{editable && <AddIntervenantDialog />}</div>
       <div className="[--table-head-top:6rem]">
         <Table id={`${id}-table`}>
           <TableHeader>

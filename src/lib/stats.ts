@@ -29,6 +29,7 @@ export function rateStats(list: Intervenant[]) {
   const rated = list.filter((i) => i.rate !== null);
   const withHours = rated.filter((i) => i.hours);
   const hours = withHours.reduce((s, i) => s + i.hours!, 0);
+  const hoursTotal = list.reduce((s, i) => s + (i.hours ?? 0), 0);
   const cost = withHours.reduce((s, i) => s + i.rate! * i.hours!, 0);
   return {
     count: list.length,
@@ -36,6 +37,7 @@ export function rateStats(list: Intervenant[]) {
     simple: mean(rated.map((i) => i.rate!)),
     weighted: hours ? cost / hours : null,
     hours,
+    hoursTotal,
     cost,
   };
 }
