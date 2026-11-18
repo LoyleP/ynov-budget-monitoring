@@ -6,16 +6,12 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { getBudgetLines } from "@/lib/queries";
+import { formatK as kfmt, formatKCompact as compact } from "@/lib/format";
 import { buildBudget } from "@/lib/stats";
 import { cn } from "@/lib/utils";
 import { fr } from "@/messages/fr";
 
-const k = new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 1 });
-const kfmt = (v: number | null) => (v === null ? "–" : k.format(v));
 
-const m = new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 2 });
-/** Amounts are in K€; from 1 000 K€ show M€. */
-const compact = (v: number) => (Math.abs(v) >= 1000 ? `${m.format(v / 1000)} M€` : `${kfmt(v)} K€`);
 
 function Stat({ id, label, value, className }: { id: string; label: string; value: string; className?: string }) {
   return (

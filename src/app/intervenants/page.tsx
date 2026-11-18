@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import { Scenario } from "@/components/scenario";
 import { IntervenantsTable } from "@/components/intervenants-table";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -40,16 +39,12 @@ async function IntervenantsPageContent() {
         <TabsList variant="line">
           <TabsTrigger value="prestataires">{fr.intervenants.prestataires}</TabsTrigger>
           <TabsTrigger value="contractuels">{fr.intervenants.contractuels}</TabsTrigger>
-          <TabsTrigger value="scenario">{fr.intervenants.scenario.tab}</TabsTrigger>
         </TabsList>
         <TabsContent value="prestataires" className="mt-4">
           <IntervenantsTable id="prestataires" items={pres} editable />
         </TabsContent>
         <TabsContent value="contractuels" className="mt-4">
           <IntervenantsTable id="contractuels" items={con} editable={false} />
-        </TabsContent>
-        <TabsContent value="scenario" className="mt-4">
-          <Scenario items={all} />
         </TabsContent>
       </Tabs>
     </main>

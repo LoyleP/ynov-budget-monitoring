@@ -3,7 +3,7 @@ export const fr = {
     title: "Suivi budgétaire",
     description: "Pilotage du budget pédagogique et des taux intervenants.",
   },
-  nav: { label: "Navigation principale", budget: "Budget", intervenants: "Taux intervenants" },
+  nav: { label: "Navigation principale", budget: "Budget", intervenants: "Taux intervenants", scenarios: "Scénarios" },
   common: { loading: "Chargement…", saved: "Modification enregistrée", undo: "Annuler", edit: "Modifier", search: "Rechercher un intervenant" },
   login: {
     title: "Connexion",
@@ -14,6 +14,18 @@ export const fr = {
     verify: "Se connecter",
     logout: "Se déconnecter",
     errors: { invalid: "Adresse ou code d'accès incorrect." },
+  },
+  scenarios: {
+    title: "Scénarios",
+    budget: "Budget",
+    rates: "Taux intervenants",
+    rubrique: "Rubrique",
+    forecast: "Prévisionnel (K€)",
+    spent: "Dépenses (K€)",
+    remainingSim: "Reste simulé",
+    gap: "Écart de reste",
+    total: "Total",
+    reset: "Réinitialiser",
   },
   theme: { toggle: "Changer de thème" },
   budget: {

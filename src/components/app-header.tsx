@@ -12,6 +12,7 @@ import { fr } from "@/messages/fr";
 const LINKS = [
   { href: "/budget", label: fr.nav.budget },
   { href: "/intervenants", label: fr.nav.intervenants },
+  { href: "/scenarios", label: fr.nav.scenarios },
 ];
 
 export function AppHeader() {
