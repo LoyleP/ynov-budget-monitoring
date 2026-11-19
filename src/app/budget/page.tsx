@@ -29,11 +29,10 @@ async function BudgetPageContent() {
 
   return (
     <main className="page-width w-full flex-1 px-4 py-6 sm:px-6 lg:px-10">
-      <h1 className="text-xl font-semibold">{fr.budget.title}</h1>
 
-      <div className="mt-6 grid gap-3 sm:grid-cols-3">
+      <div className="grid gap-3 sm:grid-cols-3">
         <Stat id="budget-stat-forecast" label={fr.budget.totalForecast} value={compact(b.forecast)} />
-        <Stat id="budget-stat-spent" label={fr.budget.totalSpent} value={compact(b.spent)} className="text-destructive" />
+        <Stat id="budget-stat-spent" label={fr.budget.totalSpent} value={`${b.spent > 0 ? "-" : ""}${compact(b.spent)}`} className="text-destructive" />
         <Stat id="budget-stat-remaining" label={fr.budget.totalRemaining} value={compact(b.remaining)} className="text-success-foreground" />
       </div>
 
@@ -100,7 +99,7 @@ async function BudgetPageContent() {
             <TableRow className="font-semibold hover:bg-transparent [&>td]:bg-[color-mix(in_oklch,var(--background),var(--muted)_50%)] [&>td:first-child]:rounded-bl-xl [&>td:last-child]:rounded-br-xl">
               <TableCell>{fr.budget.total}</TableCell>
               <TableCell className="text-right tabular-nums">{compact(b.forecast)}</TableCell>
-              <TableCell className="text-right tabular-nums text-destructive">{compact(b.spent)}</TableCell>
+              <TableCell className="text-right tabular-nums text-destructive">{b.spent > 0 ? "-" : ""}{compact(b.spent)}</TableCell>
               <TableCell className={cn("text-right tabular-nums", b.remaining > 0 && "text-success-foreground")}>{compact(b.remaining)}</TableCell>
               <TableCell />
             </TableRow>

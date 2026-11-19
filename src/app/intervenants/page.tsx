@@ -27,9 +27,8 @@ async function IntervenantsPageContent() {
 
   return (
     <main className="page-width w-full flex-1 px-4 py-6 sm:px-6 lg:px-10">
-      <h1 className="text-xl font-semibold">{fr.intervenants.title}</h1>
 
-      <div className="mt-6 grid gap-3 md:grid-cols-3">
+      <div className="grid gap-3 md:grid-cols-3">
         <RateCard id="intervenants-card-prestataires" title={fr.intervenants.prestataires} stats={rateStats(pres)} />
         <RateCard id="intervenants-card-contractuels" title={fr.intervenants.contractuels} stats={rateStats(con)} />
         <RateCard id="intervenants-card-global" title={fr.intervenants.global} stats={rateStats(all)} />

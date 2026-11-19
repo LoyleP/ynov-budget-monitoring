@@ -4,7 +4,9 @@ const nextConfig: NextConfig = {
   /* config options here */
   cacheComponents: true,
   async redirects() {
-    return [{ source: "/", destination: "/budget", permanent: false }];
+    return [
+      { source: "/", destination: "/budget", permanent: false },
+    ];
   },
   partialPrefetching: true,
   turbopack: {

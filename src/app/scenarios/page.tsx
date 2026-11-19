@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { BudgetScenario } from "@/components/budget-scenario";
 import { Scenario } from "@/components/scenario";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getBudgetLines, getIntervenants } from "@/lib/queries";
 import { buildBudget } from "@/lib/stats";
 import { fr } from "@/messages/fr";
@@ -11,15 +12,18 @@ async function ScenariosContent() {
 
   return (
     <main className="page-width w-full flex-1 px-4 py-6 sm:px-6 lg:px-10">
-      <h1 className="text-xl font-semibold">{fr.scenarios.title}</h1>
-      <section id="scenarios-budget" className="mt-6 space-y-3">
-        <h2 className="text-base font-medium">{fr.scenarios.budget}</h2>
-        <BudgetScenario rows={rows} />
-      </section>
-      <section id="scenarios-rates" className="mt-10 space-y-3">
-        <h2 className="text-base font-medium">{fr.scenarios.rates}</h2>
-        <Scenario items={intervenants} />
-      </section>
+      <Tabs defaultValue="budget">
+        <TabsList variant="line">
+          <TabsTrigger value="budget">{fr.scenarios.budget}</TabsTrigger>
+          <TabsTrigger value="rates">{fr.scenarios.rates}</TabsTrigger>
+        </TabsList>
+        <TabsContent value="budget" className="mt-4">
+          <BudgetScenario rows={rows} />
+        </TabsContent>
+        <TabsContent value="rates" className="mt-4">
+          <Scenario items={intervenants} />
+        </TabsContent>
+      </Tabs>
     </main>
   );
 }
